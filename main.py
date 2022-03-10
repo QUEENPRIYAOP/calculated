@@ -27,7 +27,10 @@ logging.basicConfig(level=logging.INFO)
 bot = TelegramClient(None, Var.API_ID, Var.API_HASH).start(bot_token=Var.BOT_TOKEN)
 
 @bot.on(events.NewMessage(pattern="/start", incoming=True, func=lambda e: e.is_private))
-
+async def begin(e):
+    if e.fwd_from:
+        return
+    await e.reply(
 a = input("Enter 1st number: ")
 b = input("Enter 2nd number: ")
 a = int(a)
@@ -35,3 +38,5 @@ b = int(b)
 ab = (a+b)
 
 print("answer", ab)
+
+)
